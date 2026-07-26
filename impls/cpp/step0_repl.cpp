@@ -1,3 +1,4 @@
+#include "linenoise.hpp"
 #include <iostream>
 #include <string>
 
@@ -17,14 +18,21 @@ std::string rep(std::string &input) {
 }
 
 int main() {
+    const auto *history_path = "history.txt";
+    linenoise::LoadHistory(history_path);
+
     std::string line;
+
     for (;;) {
-        std::cout << "user> ";
-        if (!std::getline(std::cin, line)) {
+        auto quit = linenoise::Readline("user> ", line);
+        if (quit) {
             break;
         }
-        std::cout << rep(line) << '\n';
+        std::cout << line << '\n';
+        linenoise::AddHistory(line.c_str());
     }
+
+    linenoise::SaveHistory(history_path);
 
     return 0;
 }
