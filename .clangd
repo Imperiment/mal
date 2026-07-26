@@ -1,0 +1,17 @@
+Diagnostics:
+  ClangTidy:
+   Add:
+      - bugprone-*     # catches common bug patterns
+      - modernize-*    # suggests modern C++ idioms
+      - performance-*  # flags needless copies, etc.
+      - readability-*  # naming, clarity
+   Remove:
+      - modernize-use-trailing-return-type # noisy, mostly style preference
+
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes  # shows param names at call sites
+  DeducedTypes: Yes    # shows deduced auto types
+
+Hover:
+  ShowAKA: Yes         # shows underlying type for aliases/typedefs
